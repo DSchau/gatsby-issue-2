@@ -20,7 +20,7 @@ const Image = () => (
         astronaut:imagesYaml(title: { eq: "Astronaut" }) {
           image:localFile {
             childImageSharp {
-              fixed(width: 120) {
+              fixed(width: 250) {
                 ...GatsbyImageSharpFixed
               }
             }
@@ -29,7 +29,7 @@ const Image = () => (
       }
     `}
     render={data => (
-      <Image fixed={data.astronaut.image.childImageSharp.fixed} />
+      <Img fixed={data.astronaut.image.childImageSharp.fixed} />
     )}
   />
 )

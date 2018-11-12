@@ -1,14 +1,14 @@
 const { createRemoteFileNode } = require('gatsby-source-filesystem')
 
-exports.onCreateNode = async function onCreateNode({ actions, cache, createNode, createNodeId, node, store }) {
+exports.onCreateNode = async function onCreateNode({ actions, cache, createContentDigest, node, store }) {
   if (node.internal.type === 'ImagesYaml') {
     try {
-      const fileNode = createRemoteFileNode({
+      const fileNode = await createRemoteFileNode({
         url: node.url,
         store,
         cache,
-        createNode,
-        createNodeId
+        createNode: actions.createNode,
+        createNodeId: createContentDigest
       })
 
       node.localFile___NODE = fileNode.id
